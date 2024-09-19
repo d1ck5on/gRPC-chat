@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package mes_grpc;
+
+option go_package="proto/;mes_grpc";
+import "google/protobuf/timestamp.proto";
+
+service MessengerServer {
+    rpc SendMessage(SendRequest) returns (SendResponse) {}
+    rpc ReadMessages(ReadRequest) returns (stream ReadResponse) {}
+}
+
+message SendRequest {
+    string author = 1;
+    string text = 2;
+}
+
+message SendResponse {
+    google.protobuf.Timestamp sendTime = 1;
+}
+
+message ReadRequest {
+
+}
+
+message ReadResponse {
+    string author = 1;
+    string text = 2;
+    google.protobuf.Timestamp sendTime = 3;
+}
+
+
